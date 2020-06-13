@@ -9,7 +9,7 @@ import Syntax hiding (__)
 import Extraction hiding (unsafeCoerce, Any)
 import Word
 import LibStruct hiding (unsafeCoerce, __)
-import Test hiding (unsafeCoerce, Any)
+import Test hiding (unsafeCoerce, Any, coq_Counter)
 import UnverifiedIncompleteCompiler hiding (unsafeCoerce, Any)
 
 rtlMod :: ([String], ([RegFileBase], BaseModule))

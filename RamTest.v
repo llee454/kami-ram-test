@@ -21,18 +21,15 @@ Section test.
 Open Scope kami_expr.
 Open Scope kami_action.
 
-Local Definition StateWrite := 0.
-Local Definition StateRead  := 1.
-Local Definition State := Bit 1.
+Local Definition Counter := Bit 26.
+
+Local Definition StateInit  := 0.
+Local Definition StateWrite := 1.
+Local Definition StateRead  := 2.
+Local Definition State := Bit 2.
 
 Section ty.
   Variable ty : Kind -> Type.
-
-  Local Definition ExampleStruct : Kind :=
-    STRUCT_TYPE {
-      "bit0" :: Bool;
-      "bit1" :: Bool
-    }.
 
   Local Definition WriteReq : Kind :=
     STRUCT_TYPE {
@@ -61,7 +58,7 @@ Section ty.
     LET req : WriteReq <-
       STRUCT {
         "val"          ::= $255;    (* bit 21 *)
-        "addr"         ::= $0;      (* bit 5 *)
+        "addr"         ::= $562;    (* bit 5 *)
         "chipEnable"   ::= $$false; (* bit 4 *)
         "writeEnable"  ::= $$false; (* bit 3 *)
         "outputEnable" ::= $$true;  (* bit 2 *)
@@ -74,7 +71,7 @@ Section ty.
   Definition readMem : ActionT ty (Bit 16) :=
     LET req : ReadReq <-
       STRUCT {
-        "addr"         ::= $0;      (* bit 5 - 20 *)
+        "addr"         ::= $562;    (* bit 5 - 20 *)
         "chipEnable"   ::= $$false; (* bit 4 *)
         "writeEnable"  ::= $$true;  (* bit 3 *)
         "outputEnable" ::= $$false; (* bit 2 *)
@@ -84,19 +81,35 @@ Section ty.
     Call val : Bit 16 <- "memRead" (pack #req : Bit (size ReadReq));
     Ret #val.
 
+  (* State machine transitions. *)
+  Definition toggleState : ActionT ty State :=
+    Read state      : State   <- "state";
+    Read counter    : Counter <- "counter";
+    Write "counter" : Counter <- #counter + $1;
+    If #counter == $0
+      then
+        Write "state" : State <- 
+          Switch #state Retn State With {
+            ($StateInit  : State @# ty) ::= ($StateWrite : State @# ty);
+            ($StateWrite : State @# ty) ::= ($StateRead  : State @# ty);
+            ($StateRead  : State @# ty) ::= ($StateRead  : State @# ty)
+          };
+        Retv;
+    Ret #state.
+
 End ty.
 
 Local Definition testBaseModule : BaseModule :=
   MODULE {
+    Register "counter" : Counter <- $1%word with
     Register "state" : State <- ConstBit $StateWrite with
 
     Rule "testRule" :=
-      Read state : State <- "state";
+      LETA state : State <- toggleState _;
       If #state == $StateWrite
         then
           LETA _ <- writeMem _;
           Call "lightLED1" ();
-          Write "state" : State <- $StateRead;
           Retv;
       If #state == $StateRead
         then

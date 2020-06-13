@@ -19,7 +19,7 @@ int main(int argc, char ** argv, char **env) {
   vluint64_t main_time = 0;
 
   int result = 0;
-  uint32_t timeout = 10;
+  uint32_t timeout = 40;
 
   bool finished;
   uint64_t numBlockBytes = (1<<20)-1;
@@ -32,6 +32,10 @@ int main(int argc, char ** argv, char **env) {
     system->CLK = 1;
     system->eval();
     tfp->dump(main_time++);
+    uint16_t addr = system->memAddr;
+    uint16_t ctl  = system->memCtl;
+    printf ("addr: %d\n", addr);
+    printf ("ctl: %d\n", ctl);
     system->CLK = 0;
     system->eval();
     tfp->dump(main_time++);

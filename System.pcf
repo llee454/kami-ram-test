@@ -1,0 +1,128 @@
+set_io --warn-no-port CLK R9
+
+set_io --warn-no-port lightLED1$_enable C8
+set_io --warn-no-port lightLED2$_enable F7
+set_io --warn-no-port lightLED3$_enable K9
+
+set_io --warn-no-port memAddr[15] N2 # addr0
+set_io --warn-no-port memAddr[14] K5 # addr1
+set_io --warn-no-port memAddr[13] J5 # addr2
+set_io --warn-no-port memAddr[12] M5 # addr3
+set_io --warn-no-port memAddr[11] P4 # addr4
+set_io --warn-no-port memAddr[10] N5 # addr5
+set_io --warn-no-port memAddr[9] P5 # addr6
+set_io --warn-no-port memAddr[8] P7 # addr7
+set_io --warn-no-port memAddr[7] M6 # addr8
+set_io --warn-no-port memAddr[6] P6 # addr9
+set_io --warn-no-port memAddr[5] T8 # addr10
+set_io --warn-no-port memAddr[4] T1 # addr11
+set_io --warn-no-port memAddr[3] P2 # addr12
+set_io --warn-no-port memAddr[2] R1 # addr13
+set_io --warn-no-port memAddr[1] N3 # addr14
+set_io --warn-no-port memAddr[0] P1 # addr15
+
+set_io --warn-no-port memCtl[4] M7 # chip enable
+set_io --warn-no-port memCtl[3] T7 # write enable
+set_io --warn-no-port memCtl[2] L5 # output enable
+set_io --warn-no-port memCtl[1] J4 # lower byte enable
+set_io --warn-no-port memCtl[0] J3 # upper byte enable
+
+set_io --warn-no-port memData[15] T2 # data0
+set_io --warn-no-port memData[14] R3 # data1
+set_io --warn-no-port memData[13] T3 # data2
+set_io --warn-no-port memData[12] R4 # data3
+set_io --warn-no-port memData[11] R5 # data4
+set_io --warn-no-port memData[10] T5 # data5
+set_io --warn-no-port memData[9] R6 # data6
+set_io --warn-no-port memData[8] T6 # data7
+set_io --warn-no-port memData[7] N4 # data8
+set_io --warn-no-port memData[6] M4 # data9
+set_io --warn-no-port memData[5] L6 # data10
+set_io --warn-no-port memData[4] M3 # data11
+set_io --warn-no-port memData[3] L4 # data12
+set_io --warn-no-port memData[2] L3 # data13
+set_io --warn-no-port memData[1] K4 # data14
+set_io --warn-no-port memData[0] K3 # data15
+
+# Read Request Packet
+#set_io --warn-no-port memRead$_argument[0] N2 # addr0
+#set_io --warn-no-port memRead$_argument[1] K5 # addr1
+#set_io --warn-no-port memRead$_argument[2] J5 # addr2
+#set_io --warn-no-port memRead$_argument[3] M5 # addr3
+#set_io --warn-no-port memRead$_argument[4] P4 # addr4
+#set_io --warn-no-port memRead$_argument[5] N5 # addr5
+#set_io --warn-no-port memRead$_argument[6] P5 # addr6
+#set_io --warn-no-port memRead$_argument[7] P7 # addr7
+#set_io --warn-no-port memRead$_argument[8] M6 # addr8
+#set_io --warn-no-port memRead$_argument[9] P6 # addr9
+#set_io --warn-no-port memRead$_argument[10] T8 # addr10
+#set_io --warn-no-port memRead$_argument[11] T1 # addr11
+#set_io --warn-no-port memRead$_argument[12] P2 # addr12
+#set_io --warn-no-port memRead$_argument[13] R1 # addr13
+#set_io --warn-no-port memRead$_argument[14] N3 # addr14
+#set_io --warn-no-port memRead$_argument[15] P1 # addr15
+
+#set_io --warn-no-port memRead$_argument[16] M7 # chip enable
+#set_io --warn-no-port memRead$_argument[17] T7 # write enable
+#set_io --warn-no-port memRead$_argument[18] L5 # output enable
+#set_io --warn-no-port memRead$_argument[19] J4 # lower byte enable
+#set_io --warn-no-port memRead$_argument[20] J3 # upper byte enable
+
+# Read Response
+#set_io --warn-no-port memRead$_return[0] T2 # data0
+#set_io --warn-no-port memRead$_return[1] R3 # data1
+#set_io --warn-no-port memRead$_return[2] T3 # data2
+#set_io --warn-no-port memRead$_return[3] R4 # data3
+#set_io --warn-no-port memRead$_return[4] R5 # data4
+#set_io --warn-no-port memRead$_return[5] T5 # data5
+#set_io --warn-no-port memRead$_return[6] R6 # data6
+#set_io --warn-no-port memRead$_return[7] T6 # data7
+#set_io --warn-no-port memRead$_return[8] N4 # data8
+#set_io --warn-no-port memRead$_return[9] M4 # data9
+#set_io --warn-no-port memRead$_return[10] L6 # data10
+#set_io --warn-no-port memRead$_return[11] M3 # data11
+#set_io --warn-no-port memRead$_return[12] L4 # data12
+#set_io --warn-no-port memRead$_return[13] L3 # data13
+#set_io --warn-no-port memRead$_return[14] K4 # data14
+#set_io --warn-no-port memRead$_return[16] K3 # data15
+
+# Write Request Packet
+#set_io --warn-no-port memWrite$_argument[0] N2 # addr0
+#set_io --warn-no-port memWrite$_argument[1] K5 # addr1
+#set_io --warn-no-port memWrite$_argument[2] J5 # addr2
+#set_io --warn-no-port memWrite$_argument[3] M5 # addr3
+#set_io --warn-no-port memWrite$_argument[4] P4 # addr4
+#set_io --warn-no-port memWrite$_argument[5] N5 # addr5
+#set_io --warn-no-port memWrite$_argument[6] P5 # addr6
+#set_io --warn-no-port memWrite$_argument[7] P7 # addr7
+#set_io --warn-no-port memWrite$_argument[8] M6 # addr8
+#set_io --warn-no-port memWrite$_argument[9] P6 # addr9
+#set_io --warn-no-port memWrite$_argument[10] T8 # addr10
+#set_io --warn-no-port memWrite$_argument[11] T1 # addr11
+#set_io --warn-no-port memWrite$_argument[12] P2 # addr12
+#set_io --warn-no-port memWrite$_argument[13] R1 # addr13
+#set_io --warn-no-port memWrite$_argument[14] N3 # addr14
+#set_io --warn-no-port memWrite$_argument[15] P1 # addr15
+
+#set_io --warn-no-port memWrite$_argument[16] T2 # data0
+#set_io --warn-no-port memWrite$_argument[17] R3 # data1
+#set_io --warn-no-port memWrite$_argument[18] T3 # data2
+#set_io --warn-no-port memWrite$_argument[19] R4 # data3
+#set_io --warn-no-port memWrite$_argument[20] R5 # data4
+#set_io --warn-no-port memWrite$_argument[21] T5 # data5
+#set_io --warn-no-port memWrite$_argument[22] R6 # data6
+#set_io --warn-no-port memWrite$_argument[23] T6 # data7
+#set_io --warn-no-port memWrite$_argument[24] N4 # data8
+#set_io --warn-no-port memWrite$_argument[25] M4 # data9
+#set_io --warn-no-port memWrite$_argument[26] L6 # data10
+#set_io --warn-no-port memWrite$_argument[27] M3 # data11
+#set_io --warn-no-port memWrite$_argument[28] L4 # data12
+#set_io --warn-no-port memWrite$_argument[29] L3 # data13
+#set_io --warn-no-port memWrite$_argument[30] K4 # data14
+#set_io --warn-no-port memWrite$_argument[31] K3 # data15
+
+#set_io --warn-no-port memWrite$_argument[32] M7 # chip enable
+#set_io --warn-no-port memWrite$_argument[33] T7 # write enable
+#set_io --warn-no-port memWrite$_argument[34] L5 # output enable
+#set_io --warn-no-port memWrite$_argument[35] J4 # lower byte enable
+#set_io --warn-no-port memWrite$_argument[36] J3 # upper byte enable
